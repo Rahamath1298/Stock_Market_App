@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, request, jsonify
 import requests
 
@@ -59,4 +60,5 @@ def realtime(symbol):
         return jsonify({'status': 'error', 'message': f'Error occurred: {e}'})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))  # Use the PORT from the environment
+    app.run(host='0.0.0.0', port=port, debug=True)
